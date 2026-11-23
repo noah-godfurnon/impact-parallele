@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Impact Parallèle, cabinet de coaching Executive à impact positif : pour chaque coaching dans votre entreprise, un talent accompagné en parallèle.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+<title>Impact Parallèle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@400;500;600&display=swap">
+<style>
+/* Layout : bandes pleine largeur qui alternent vert canard (moments forts) et crème (contenu),
+   reliées par le motif des deux trajectoires parallèles. Charte de marque : un seul univers, assumé. */
+:root {
+  --canard: #14363A;      /* couleur principale */
+  --canard-2: #1F4A4F;    /* surfaces sur fond canard */
+  --cuivre: #B8693D;      /* accent sur fond clair */
+  --cuivre-clair: #D9935F;/* accent sur fond canard */
+  --creme: #F6F1EA;       /* fond clair */
+  --sable: #E9DFD3;       /* surfaces, séparations */
+  --encre: #1E2B2D;       /* texte courant */
+  --gris: #5B6B6C;        /* texte secondaire */
+  --blanc: #FFFFFF;
+  --f-titre: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-texte: "Jost", "Avenir Next", "Avenir", "Segoe UI", sans-serif;
+  --mesure: 1120px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--creme); color: var(--encre); font: 400 17px/1.6 var(--f-texte); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--canard); }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--f-titre); font-weight: 400; line-height: 1.12; margin: 0; text-wrap: balance; color: var(--canard); }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--cuivre-clair); outline-offset: 3px; border-radius: 2px; }
+
+.bande { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: clamp(64px, 9vw, 112px); }
+.bande > .in { max-width: var(--mesure); margin-inline: auto; display: grid; gap: 40px; }
+.sombre { background: var(--canard); color: var(--creme); }
+.sombre h1, .sombre h2, .sombre h3 { color: var(--creme); }
+.sable { background: var(--sable); }
+.surtitre { font: 600 12.5px/1 var(--f-texte); letter-spacing: .22em; text-transform: uppercase; color: var(--cuivre); }
+.sombre .surtitre { color: var(--cuivre-clair); }
+.h2 { font-size: clamp(30px, 4.2vw, 46px); max-width: 22ch; }
+.chapo { font-size: 19px; color: var(--gris); max-width: 60ch; }
+.sombre .chapo { color: var(--sable); }
+
+/* En-tête */
+.entete { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--creme) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--sable);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.entete .in { max-width: var(--mesure); margin-inline: auto; display: flex; align-items: center; gap: 24px; height: 68px; }
+.entete .logo img { height: 40px; width: auto; display: block; }
+.nav { display: flex; gap: 22px; margin-left: auto; font-size: 15px; }
+.nav a { text-decoration: none; color: var(--gris); }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--canard); }
+.bouton { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px; font: 500 15px/1 var(--f-texte); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.bouton:hover { transform: translateY(-1px); }
+.b-cuivre { background: var(--cuivre); color: var(--blanc); }
+.b-cuivre:hover { background: #A65C33; }
+.b-ligne { border-color: currentColor; color: inherit; background: transparent; }
+.entete .bouton { padding: 10px 18px; font-size: 14px; }
+@media (max-width: 860px) { .nav { display: none; } .entete .bouton { margin-left: auto; } }
+
+/* Ouverture */
+.hero { position: relative; overflow: hidden; padding-block: clamp(72px, 10vw, 132px) clamp(56px, 8vw, 96px); }
+.hero .in { gap: 32px; position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(42px, 7vw, 86px); font-style: italic; max-width: 14ch; }
+.hero h1 em { font-style: normal; color: var(--cuivre-clair); }
+.hero .chapo { font-size: clamp(18px, 2vw, 21px); }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.trajectoires { width: 100%; height: auto; display: block; overflow: visible; }
+.trajectoires path { fill: none; stroke-width: 3; stroke-linecap: round; }
+.hero .trajectoires { margin-top: 8px; }
+.hero .trajectoires path { stroke-dasharray: 1200; stroke-dashoffset: 0; animation: tracer 2.4s cubic-bezier(.6,.05,.2,1) both; }
+.hero .trajectoires path + path { animation-delay: .35s; }
+@keyframes tracer { from { stroke-dashoffset: 1200; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .hero .trajectoires path { animation: none; } }
+.etiquettes { display: flex; justify-content: space-between; gap: 16px; font: 500 13px/1.3 var(--f-texte); letter-spacing: .14em; text-transform: uppercase; color: var(--sable); }
+.etiquettes span:last-child { color: var(--cuivre-clair); text-align: right; }
+
+/* Constats */
+.chiffres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--sable); }
+.chiffre { padding: 28px 28px 8px 0; display: grid; gap: 10px; align-content: start; }
+.chiffre + .chiffre { padding-left: 28px; border-left: 1px solid var(--sable); }
+.chiffre b { font: 400 clamp(52px, 6vw, 72px)/1 var(--f-titre); color: var(--cuivre); font-variant-numeric: lining-nums; }
+.chiffre p { color: var(--encre); max-width: 30ch; }
+.source { font-size: 13px; color: var(--gris); }
+@media (max-width: 760px) { .chiffres { grid-template-columns: 1fr; } .chiffre + .chiffre { padding-left: 0; border-left: 0; border-top: 1px solid var(--sable); } }
+
+/* Le concept 1 = 2 */
+.concept { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; }
+.formule { font-family: var(--f-titre); color: var(--canard); display: grid; gap: 6px; }
+.formule div { display: flex; align-items: baseline; gap: 18px; font-size: clamp(24px, 3vw, 34px); }
+.formule b { font-weight: 400; font-size: clamp(64px, 8vw, 104px); line-height: 1; color: var(--cuivre); font-variant-numeric: lining-nums; min-width: .7em; }
+.deux { display: grid; gap: 0; }
+.voie { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 18px; padding: 22px 0; border-top: 1px solid var(--sable); }
+.voie:last-child { border-bottom: 1px solid var(--sable); }
+.voie .pastille { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font: 500 15px var(--f-texte); color: var(--blanc); background: var(--canard); }
+.voie:last-child .pastille { background: var(--cuivre); }
+.voie h3 { font-size: 23px; margin-bottom: 6px; }
+.voie p { color: var(--gris); }
+@media (max-width: 860px) { .concept { grid-template-columns: 1fr; gap: 32px; } }
+
+/* Deux accompagnements */
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.carte { background: var(--blanc); border-radius: 18px; padding: clamp(26px, 3.4vw, 40px); display: grid; gap: 16px; align-content: start; box-shadow: 0 1px 2px rgba(20,54,58,.06), 0 12px 32px -18px rgba(20,54,58,.22); }
+.carte.fonce { background: var(--canard); color: var(--creme); box-shadow: none; }
+.carte.fonce h3 { color: var(--creme); }
+.carte h3 { font-size: 25px; }
+.liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.liste li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; }
+.liste li::before { content: ""; height: 1.5px; width: 14px; background: var(--cuivre); margin-top: .8em; }
+.carte.fonce .liste li::before { background: var(--cuivre-clair); }
+.publics { display: grid; gap: 14px; margin-top: 4px; }
+.public { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: center; padding: 14px; border-radius: 12px; background: var(--canard-2); }
+.public svg { width: 44px; height: 44px; }
+.public b { display: block; font-weight: 600; }
+.public span { color: var(--sable); font-size: 15px; }
+@media (max-width: 760px) { .duo { grid-template-columns: 1fr; } }
+
+/* Dispositif */
+.formats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.format { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 26px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(246,241,234,.18); }
+.format .gros { grid-row: span 2; font: 400 clamp(80px, 9vw, 116px)/.85 var(--f-titre); color: var(--cuivre-clair); font-variant-numeric: lining-nums; }
+.format h3 { font-size: 27px; }
+.format .sous { color: var(--sable); }
+.format .liste { grid-column: 1 / -1; margin-top: 14px; color: var(--creme); }
+.format .liste li::before { background: var(--cuivre-clair); }
+@media (max-width: 760px) { .formats { grid-template-columns: 1fr; gap: 0; } }
+
+/* Impact */
+.impacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.impact { display: grid; gap: 12px; align-content: start; padding-top: 24px; border-top: 2px solid var(--canard); }
+.impact:nth-child(2) { border-top-color: var(--cuivre); }
+.impact:nth-child(3) { border-top-color: var(--gris); }
+.impact h3 { font-size: 23px; }
+.impact .liste { color: var(--encre); font-size: 16px; }
+@media (max-width: 860px) { .impacts { grid-template-columns: 1fr; } }
+
+/* Équipe */
+.equipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+.membre { display: grid; gap: 10px; justify-items: start; }
+.membre img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 14px; filter: grayscale(1) contrast(1.02); background: var(--sable); }
+.membre h3 { font-size: 20px; }
+.membre p { font-size: 14px; color: var(--gris); line-height: 1.45; }
+.certif { display: flex; flex-wrap: wrap; gap: 10px; }
+.puce { font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--sable); background: var(--blanc); }
+@media (max-width: 980px) { .equipe { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .equipe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Partenaires */
+.partenaires { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.partenaire { display: grid; gap: 8px; align-content: start; padding: 22px; border-radius: 14px; border: 1px solid var(--sable); background: var(--creme); text-decoration: none; transition: border-color .15s; }
+.partenaire:hover { border-color: var(--cuivre); }
+.partenaire b { font: 400 22px/1.2 var(--f-titre); color: var(--canard); }
+.partenaire span { font-size: 15px; color: var(--gris); }
+.partenaire small { font-size: 13px; color: var(--cuivre); }
+@media (max-width: 860px) { .partenaires { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Devis */
+.devis { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+.devis aside { display: grid; gap: 20px; }
+.etapes { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: e; }
+.etapes li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; color: var(--sable); counter-increment: e; }
+.etapes li::before { content: counter(e); width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--cuivre-clair); color: var(--cuivre-clair); display: grid; place-items: center; font-size: 14px; }
+form { background: var(--creme); color: var(--encre); border-radius: 20px; padding: clamp(22px, 3.4vw, 40px); display: grid; gap: 18px; }
+.ligne2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.champ { display: grid; gap: 7px; min-width: 0; }
+.champ label, fieldset legend { font: 500 14px var(--f-texte); color: var(--canard); }
+.champ input, .champ select, .champ textarea { font: 400 16px var(--f-texte); color: var(--encre); background: var(--blanc); border: 1px solid #D8CCBD; border-radius: 10px; padding: 12px 14px; width: 100%; }
+.champ textarea { min-height: 110px; resize: vertical; }
+.champ input:focus, .champ select:focus, .champ textarea:focus { outline: 2px solid var(--cuivre); outline-offset: 0; border-color: transparent; }
+.facultatif { color: var(--gris); font-weight: 400; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
+.choix { display: flex; flex-wrap: wrap; gap: 8px; }
+.choix label { position: relative; }
+.choix input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.choix span { display: inline-block; padding: 9px 14px; border-radius: 999px; border: 1px solid #D8CCBD; background: var(--blanc); font-size: 15px; cursor: pointer; }
+.choix input:checked + span { background: var(--canard); color: var(--creme); border-color: var(--canard); }
+.choix input:focus-visible + span { outline: 2px solid var(--cuivre); outline-offset: 2px; }
+.envoi { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+.note { font-size: 13.5px; color: var(--gris); max-width: 44ch; }
+.erreur { color: #A33A1F; font-size: 14.5px; }
+.merci { display: grid; gap: 14px; padding: 8px 0; }
+.merci h3 { font-size: 30px; }
+.recap { white-space: pre-wrap; font-size: 14.5px; background: var(--blanc); border: 1px solid var(--sable); border-radius: 10px; padding: 14px; max-height: 260px; overflow: auto; }
+@media (max-width: 860px) { .devis { grid-template-columns: 1fr; gap: 32px; } }
+@media (max-width: 560px) { .ligne2 { grid-template-columns: 1fr; } }
+
+/* Demandes reçues (visible pour la propriétaire du site seulement) */
+.recues { display: grid; gap: 12px; }
+.recue { background: var(--blanc); border-radius: 12px; padding: 16px 18px; display: grid; gap: 6px; font-size: 15px; }
+.recue b { font-weight: 600; }
+.recue .meta { color: var(--gris); font-size: 13.5px; }
+
+/* Pied de page */
+.pied { background: var(--canard); color: var(--sable); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 56px calc(40px + env(safe-area-inset-bottom, 0px)); }
+.pied .in { max-width: var(--mesure); margin-inline: auto; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: end; }
+.pied img { height: 64px; width: auto; display: block; }
+.pied p { font-size: 14px; }
+.pied a { color: var(--cuivre-clair); }
+
+/* Charte graphique */
+.palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 16px; }
+.teinte { border-radius: 14px; overflow: hidden; background: var(--blanc); border: 1px solid var(--sable); display: grid; }
+.teinte .echant { height: 110px; }
+.teinte div:last-child { padding: 14px 16px; display: grid; gap: 4px; }
+.teinte b { font-weight: 600; }
+.teinte code { font: 500 14px/1.3 ui-monospace, "SF Mono", Menlo, monospace; color: var(--gris); }
+.teinte button { justify-self: start; margin-top: 6px; font: 500 13px var(--f-texte); color: var(--canard); background: var(--creme); border: 1px solid var(--sable); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.logos figure { margin: 0; border-radius: 14px; padding: 40px 28px; display: grid; place-items: center; gap: 18px; border: 1px solid var(--sable); }
+.logos figure img { width: min(100%, 360px); height: auto; }
+.logos figcaption { font-size: 14px; }
+.types { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.type { background: var(--blanc); border-radius: 14px; padding: 26px; display: grid; gap: 10px; border: 1px solid var(--sable); }
+.type .ex1 { font: 400 52px/1 var(--f-titre); color: var(--canard); }
+.type .ex2 { font: 500 15px var(--f-texte); letter-spacing: .32em; text-transform: uppercase; color: var(--cuivre); }
+.type p { color: var(--gris); font-size: 15px; }
+.regles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.regle { padding: 22px; border-radius: 14px; background: var(--blanc); border: 1px solid var(--sable); display: grid; gap: 8px; align-content: start; }
+.regle h3 { font-size: 20px; }
+.regle p { color: var(--gris); font-size: 15px; }
+@media (max-width: 760px) { .logos, .types, .regles { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+
+<header class="entete">
+  <div class="in">
+    <a class="logo" href="#accueil" aria-label="Impact Parallèle, accueil"><img src="logo.svg" alt="Impact Parallèle" width="94" height="40"></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#accueil" data-lien="accueil">L'approche</a>
+      <a href="#accueil" data-ancre="dispositif">Le dispositif</a>
+      <a href="#accueil" data-ancre="equipe">L'équipe</a>
+      <a href="#charte" data-lien="charte">Charte graphique</a>
+    </nav>
+    <a class="bouton b-cuivre" href="#accueil" data-ancre="devis">Demander un devis</a>
+  </div>
+</header>
+
+<main id="vue-accueil">
+  <!-- Ouverture -->
+  <section class="bande sombre hero" aria-labelledby="titre-hero">
+    <div class="in">
+      <p class="surtitre">Cabinet de coaching Executive à impact positif</p>
+      <h1 id="titre-hero">Changer d'angle de vue, pour voir plus loin, <em>avec impact.</em></h1>
+      <p class="chapo">Nous accompagnons vos dirigeants, managers et talents. Et pour chaque coaching mené dans votre entreprise, nous accompagnons en parallèle un talent qui n'y a pas accès.</p>
+      <div class="actions">
+        <a class="bouton b-cuivre" href="#accueil" data-ancre="devis">Demander un devis</a>
+        <a class="bouton b-ligne" href="#accueil" data-ancre="concept">Comprendre l'approche</a>
+      </div>
+      <div>
+        <svg class="trajectoires" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4,64 C300,98 560,8 996,26" stroke="#D9935F"/>
+          <path d="M4,86 C300,120 560,30 996,48" stroke="#D9935F" opacity=".5"/>
+        </svg>
+        <div class="etiquettes"><span>Votre talent, dans l'entreprise</span><span>Un talent, en parallèle</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Constats -->
+  <section class="bande" id="constats" aria-labelledby="titre-constats">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Ce que vivent les cadres aujourd'hui</p>
+        <h2 class="h2" id="titre-constats">Le sens et l'impact sont au cœur de leurs préoccupations</h2>
+      </div>
+      <div class="chiffres">
+        <div class="chiffre"><b>92&nbsp;%</b><p>des professionnels jugent le sens au travail très important.</p><p class="source">Chaire Impact Positif Audencia × jobs_that_makesense, 2022</p></div>
+        <div class="chiffre"><b>1&nbsp;sur&nbsp;2</b><p>Près d'un cadre sur deux ressent un manque de sens dans ses missions actuelles.</p><p class="source">Baromètre Malakoff Humanis Santé au travail, 2025</p></div>
+        <div class="chiffre"><b>61&nbsp;%</b><p>des cadres craignent d'être remplacés, au moins en partie, par l'intelligence artificielle.</p><p class="source">Odoxa pour Saegus, BFM Business et Stratégies, 2026</p></div>
+      </div>
+      <p class="chapo">Le brown-out, le burn-out de sens, touche d'abord les profils expérimentés : ils réussissent selon les critères de l'entreprise, mais se sentent déconnectés de leurs valeurs. Pour l'entreprise, c'est un risque sur la performance, l'engagement et la rétention des talents.</p>
+    </div>
+  </section>
+
+  <!-- Le concept -->
+  <section class="bande sable" id="concept" aria-labelledby="titre-concept">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Notre approche</p>
+        <h2 class="h2" id="titre-concept">Une autre façon d'accompagner, avec le sens et l'impact comme boussoles</h2>
+      </div>
+      <div class="concept">
+        <div class="formule" aria-label="1 coaching Executive, 2 trajectoires accompagnées">
+          <div><b>1</b><span>coaching Executive</span></div>
+          <div><b>2</b><span>trajectoires accompagnées</span></div>
+        </div>
+        <div class="deux">
+          <div class="voie"><span class="pastille" aria-hidden="true">1</span><div><h3>Au sein de votre entreprise</h3><p>Nous accompagnons votre dirigeant, manager ou talent sur les problématiques professionnelles que vous avez identifiées ensemble.</p></div></div>
+          <div class="voie"><span class="pastille" aria-hidden="true">2</span><div><h3>En parallèle, à l'extérieur</h3><p>Nous accompagnons un talent qui n'a pas accès au coaching, sur les problématiques qu'il identifie lui-même. Si elles le souhaitent, les deux personnes peuvent se rencontrer.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deux accompagnements -->
+  <section class="bande" aria-labelledby="titre-duo">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Qui nous accompagnons</p>
+        <h2 class="h2" id="titre-duo">Deux accompagnements, une même exigence</h2>
+      </div>
+      <div class="duo">
+        <article class="carte">
+          <p class="surtitre">Dans votre entreprise</p>
+          <h3>Executive coaching de vos dirigeants, managers et talents, en individuel ou en collectif</h3>
+          <ul class="liste">
+            <li>Prise de poste, évolution de responsabilités</li>
+            <li>Développement du leadership</li>
+            <li>Gestion des transformations</li>
+            <li>Difficultés relationnelles et gestion des conflits</li>
+            <li>Gestion de la pression et des équilibres</li>
+            <li>Moments de transition professionnelle</li>
+          </ul>
+        </article>
+        <article class="carte fonce">
+          <p class="surtitre" style="color:var(--cuivre-clair)">En parallèle, à l'extérieur</p>
+          <h3>Un autre talent, qui n'a pas accès au coaching : un transformateur de trajectoires et de société</h3>
+          <div class="publics">
+            <div class="public">
+              <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="22" fill="#D9935F"/><path d="M11 19l11-5 11 5-11 5z" fill="#14363A"/><path d="M15 21v6c0 2 3 4 7 4s7-2 7-4v-6l-7 3z" fill="#14363A"/></svg>
+              <div><b>De jeunes talents</b><span>issus de milieux défavorisés</span></div>
+            </div>
+            <div class="public">
+              <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="22" fill="#D9935F"/><path d="M12 29c5 0 6-8 11-8s6 6 9 6" fill="none" stroke="#14363A" stroke-width="2.4" stroke-linecap="round"/><circle cx="32" cy="15" r="3.2" fill="#14363A"/><circle cx="12" cy="29" r="2.6" fill="#14363A"/></svg>
+              <div><b>Des seniors</b><span>avec un projet de reconversion</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dispositif -->
+  <section class="bande sombre" id="dispositif" aria-labelledby="titre-dispositif">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Le dispositif</p>
+        <h2 class="h2" id="titre-dispositif">Concret, cadré, mené par nos executive coachs</h2>
+      </div>
+      <div class="formats">
+        <div class="format">
+          <span class="gros">8</span>
+          <h3>séances de 1h30</h3>
+          <p class="sous">Executive coaching contractualisé</p>
+          <ul class="liste">
+            <li>Entretien découverte en amont avec la personne coachée</li>
+            <li>Réunions tripartites d'ouverture et de clôture</li>
+            <li>Assuré par nos executive coachs</li>
+          </ul>
+        </div>
+        <div class="format">
+          <span class="gros">3</span>
+          <h3>séances d'1h</h3>
+          <p class="sous">Accompagnement en parallèle</p>
+          <ul class="liste">
+            <li>Un jeune talent ou un senior en reconversion</li>
+            <li>Entretien découverte en amont</li>
+            <li>Assuré par nos executive coachs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section class="bande" aria-labelledby="titre-impact">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Ce que vous y gagnez</p>
+        <h2 class="h2" id="titre-impact">Un impact démultiplié, dedans comme dehors</h2>
+      </div>
+      <div class="impacts">
+        <div class="impact">
+          <h3>Un impact interne décuplé</h3>
+          <ul class="liste">
+            <li>Le potentiel et le bien-être de votre collaborateur, au bénéfice de la performance.</li>
+            <li>Un accompagnement porteur de sens : le sien en génère un second.</li>
+          </ul>
+        </div>
+        <div class="impact">
+          <h3>Un impact positif à l'externe</h3>
+          <ul class="liste">
+            <li>Un accompagnement de haut niveau vers ses objectifs professionnels.</li>
+            <li>Une mise en relation avec des dirigeants et des talents de haut niveau.</li>
+            <li>Ce qu'il créera ensuite : une offre innovante, de l'emploi…</li>
+          </ul>
+        </div>
+        <div class="impact">
+          <h3>Votre RSE et votre marque employeur</h3>
+          <ul class="liste">
+            <li>Image employeur, recrutement de jeunes talents et de seniors, intrapreneuriat.</li>
+            <li>La possibilité de communiquer sur ces accompagnements en parallèle.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Équipe -->
+  <section class="bande sable" id="equipe" aria-labelledby="titre-equipe">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Qui sommes-nous</p>
+        <h2 class="h2" id="titre-equipe">Cinq dirigeants devenus coachs Executive</h2>
+        <p class="chapo">15 à 25 ans d'expérience à des postes de direction (direction générale, ventes, marketing, communication, RH…) et l'impact positif pour boussole commune.</p>
+      </div>
+      <div class="equipe">
+        <div class="membre"><img src="img/nathalie.jpg" alt="Portrait de Nathalie Filippi" loading="lazy" width="480" height="480"><h3>Nathalie Filippi</h3><p>Co-fondatrice · Managing Partner, Heddo Consulting</p></div>
+        <div class="membre"><img src="img/jeanmi.jpg" alt="Portrait de Jean-Mi Godfurnon" loading="lazy" width="480" height="480"><h3>Jean-Mi Godfurnon</h3><p>Co-fondateur · Global Head, International Premium Brands, Nestlé Waters</p></div>
+        <div class="membre"><img src="img/marine.jpg" alt="Portrait de Marine Gacoin" loading="lazy" width="480" height="480"><h3>Marine Gacoin</h3><p>Co-fondatrice · Directrice et consultante RH, Alternatives RH</p></div>
+        <div class="membre"><img src="img/nicolas.jpg" alt="Portrait de Nicolas Godel" loading="lazy" width="480" height="480"><h3>Nicolas Godel</h3><p>Co-fondateur · International Management Trainer &amp; Executive Coach</p></div>
+        <div class="membre"><img src="img/virginie.jpg" alt="Portrait de Virginie Millet" loading="lazy" width="480" height="480"><h3>Virginie Millet</h3><p>Co-fondatrice · Dirigeante, VM Coaching &amp; Conseil</p></div>
+      </div>
+      <div class="certif">
+        <span class="puce">Certifiés Executive Coach HEC Paris</span>
+        <span class="puce">Approche systémique (Palo Alto)</span>
+        <span class="puce">Approche narrative</span>
+        <span class="puce">Analyse transactionnelle</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partenaires -->
+  <section class="bande" aria-labelledby="titre-partenaires">
+    <div class="in">
+      <div style="display:grid;gap:14px">
+        <p class="surtitre">Avec qui</p>
+        <h2 class="h2" id="titre-partenaires">Nos associations partenaires</h2>
+        <p class="chapo">Elles nous aident à rencontrer les talents que nous accompagnons en parallèle.</p>
+      </div>
+      <div class="partenaires">
+        <a class="partenaire" href="https://article-1.eu/" target="_blank" rel="noopener"><b>Article 1</b><span>Égalité des chances pour les jeunes issus de milieux populaires</span><small>article-1.eu ↗</small></a>
+        <a class="partenaire" href="https://positiv.ngo/" target="_blank" rel="noopener"><b>Positiv</b><span>Accompagnement d'entrepreneurs, au plus près des territoires</span><small>positiv.ngo ↗</small></a>
+        <a class="partenaire" href="https://avarap.asso.fr/" target="_blank" rel="noopener"><b>Avarap</b><span>Accompagnement des cadres en transition professionnelle</span><small>avarap.asso.fr ↗</small></a>
+        <a class="partenaire" href="https://capitalfilles.fr/" target="_blank" rel="noopener"><b>Capital Filles</b><span>Mentorat de lycéennes et d'étudiantes de milieux modestes</span><small>capitalfilles.fr ↗</small></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devis -->
+  <section class="bande sombre" id="devis" aria-labelledby="titre-devis">
+    <div class="in">
+      <div class="devis">
+        <aside>
+          <p class="surtitre">Demande de devis</p>
+          <h2 class="h2" id="titre-devis">Parlons de votre besoin</h2>
+          <p class="chapo">Quelques questions suffisent. Un coach vous recontacte pour un premier échange, sans engagement.</p>
+          <ol class="etapes">
+            <li>Vous décrivez la situation de la personne ou de l'équipe à accompagner.</li>
+            <li>Nous vous appelons pour en parler et vous proposer un coach.</li>
+            <li>Vous recevez une proposition chiffrée, avec le talent accompagné en parallèle.</li>
+          </ol>
+        </aside>
+
+        <div id="zone-form">
+          <form id="form-devis" novalidate>
+            <div class="ligne2">
+              <div class="champ"><label for="f-prenom">Prénom</label><input id="f-prenom" name="prenom" autocomplete="given-name" required></div>
+              <div class="champ"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="family-name" required></div>
+            </div>
+            <div class="ligne2">
+              <div class="champ"><label for="f-entreprise">Entreprise</label><input id="f-entreprise" name="entreprise" autocomplete="organization" required></div>
+              <div class="champ"><label for="f-fonction">Votre fonction</label><input id="f-fonction" name="fonction" autocomplete="organization-title" placeholder="DRH, Head of Talent…"></div>
+            </div>
+            <div class="ligne2">
+              <div class="champ"><label for="f-email">Email professionnel</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+              <div class="champ"><label for="f-tel">Téléphone <span class="facultatif">(facultatif)</span></label><input id="f-tel" name="telephone" type="tel" autocomplete="tel"></div>
+            </div>
+            <fieldset>
+              <legend>Format souhaité</legend>
+              <div class="choix" role="radiogroup">
+                <label><input type="radio" id="f-format-ind" name="format" value="Individuel" checked><span>Individuel</span></label>
+                <label><input type="radio" id="f-format-col" name="format" value="Collectif"><span>Collectif</span></label>
+                <label><input type="radio" id="f-format-nsp" name="format" value="À définir"><span>À définir ensemble</span></label>
+              </div>
+            </fieldset>
+            <div class="champ">
+              <label for="f-nombre">Nombre de personnes à accompagner</label>
+              <select id="f-nombre" name="nombre">
+                <option>1 personne</option><option>2 à 5 personnes</option><option>6 à 10 personnes</option><option>Plus de 10 personnes</option>
+              </select>
+            </div>
+            <fieldset>
+              <legend>Sujets à travailler <span class="facultatif">(plusieurs choix possibles)</span></legend>
+              <div class="choix">
+                <label><input type="checkbox" id="f-s1" name="sujets" value="Prise de poste"><span>Prise de poste</span></label>
+                <label><input type="checkbox" id="f-s2" name="sujets" value="Leadership"><span>Leadership</span></label>
+                <label><input type="checkbox" id="f-s3" name="sujets" value="Transformation"><span>Transformation</span></label>
+                <label><input type="checkbox" id="f-s4" name="sujets" value="Relations, conflits"><span>Relations, conflits</span></label>
+                <label><input type="checkbox" id="f-s5" name="sujets" value="Pression, équilibres"><span>Pression, équilibres</span></label>
+                <label><input type="checkbox" id="f-s6" name="sujets" value="Transition professionnelle"><span>Transition professionnelle</span></label>
+                <label><input type="checkbox" id="f-s7" name="sujets" value="Sens au travail"><span>Sens au travail</span></label>
+              </div>
+            </fieldset>
+            <div class="champ"><label for="f-message">Votre besoin en quelques lignes <span class="facultatif">(facultatif)</span></label><textarea id="f-message" name="message" placeholder="Contexte, échéance, ce que vous attendez de l'accompagnement…"></textarea></div>
+            <p class="erreur" id="f-erreur" hidden></p>
+            <div class="envoi">
+              <p class="note">Vos réponses servent uniquement à préparer votre devis.</p>
+              <button class="bouton b-cuivre" type="submit" id="f-envoyer">Envoyer ma demande</button>
+            </div>
+          </form>
+
+          <div class="merci" id="merci" hidden>
+            <form style="gap:14px">
+              <p class="surtitre" id="merci-titre">Votre demande</p>
+              <h3>Merci, nous revenons vers vous rapidement</h3>
+              <p id="merci-texte">Un coach d'Impact Parallèle vous recontacte pour un premier échange.</p>
+              <div class="recap" id="recap"></div>
+              <div class="envoi">
+                <button class="bouton b-ligne" type="button" id="copier-recap" style="color:var(--canard)">Copier ma demande</button>
+                <button class="bouton b-cuivre" type="button" id="nouvelle">Faire une autre demande</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="bloc-recues" hidden>
+        <div style="display:grid;gap:14px">
+          <p class="surtitre">Visible par vous seulement</p>
+          <h3 style="font-size:28px">Demandes reçues</h3>
+        </div>
+        <div class="recues" id="recues"><p style="color:var(--sable)">Chargement des demandes…</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Charte graphique -->
+<main id="vue-charte" hidden>
+  <section class="bande sombre" aria-labelledby="titre-charte">
+    <div class="in">
+      <p class="surtitre">Identité visuelle</p>
+      <h1 id="titre-charte" style="font-size:clamp(40px,6vw,72px);font-style:italic">Charte graphique</h1>
+      <p class="chapo">Les règles pour que chaque support (site, présentation, réseaux sociaux, documents) parle d'une seule voix.</p>
+    </div>
+  </section>
+
+  <section class="bande" aria-labelledby="titre-logo">
+    <div class="in">
+      <div style="display:grid;gap:14px"><p class="surtitre">1 · Le logo</p><h2 class="h2" id="titre-logo">Deux trajectoires parallèles sous un même nom</h2>
+      <p class="chapo">« IMPACT » en capitales à empattements fins, deux lignes ondulées qui avancent ensemble (le coaching dans l'entreprise et celui mené en parallèle), puis « PARALLÈLE » en capitales espacées.</p></div>
+      <div class="logos">
+        <figure style="background:var(--creme)"><img src="logo.svg" alt="Logo Impact Parallèle sur fond clair" width="818" height="350"><figcaption style="color:var(--gris)">Sur fond clair : IMPACT vert canard, lignes et PARALLÈLE cuivre</figcaption></figure>
+        <figure style="background:var(--canard);border-color:var(--canard)"><img src="logo-blanc.svg" alt="Logo Impact Parallèle sur fond vert canard" width="818" height="350"><figcaption style="color:var(--sable)">Sur fond foncé : IMPACT crème, lignes et PARALLÈLE cuivre clair</figcaption></figure>
+      </div>
+      <div class="regles">
+        <div class="regle"><h3>Espace</h3><p>Laisser autour du logo une marge au moins égale à la hauteur du « I ».</p></div>
+        <div class="regle"><h3>Taille minimale</h3><p>2,5 cm de large à l'impression, 100 pixels à l'écran, pour que « PARALLÈLE » reste lisible.</p></div>
+        <div class="regle"><h3>À éviter</h3><p>Ne pas déformer, ne pas changer les couleurs, ne pas poser sur une photo chargée.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande sable" aria-labelledby="titre-palette">
+    <div class="in">
+      <div style="display:grid;gap:14px"><p class="surtitre">2 · Les couleurs</p><h2 class="h2" id="titre-palette">Une couleur dominante, un accent</h2>
+      <p class="chapo">Le vert canard domine (fonds, titres), le cuivre sert d'accent (chiffres clés, boutons, lignes). Le crème et le sable donnent de l'air.</p></div>
+      <div class="palette" id="palette"></div>
+    </div>
+  </section>
+
+  <section class="bande" aria-labelledby="titre-typo">
+    <div class="in">
+      <div style="display:grid;gap:14px"><p class="surtitre">3 · La typographie</p><h2 class="h2" id="titre-typo">Une élégante, une lisible</h2></div>
+      <div class="types">
+        <div class="type"><span class="ex1">Changer d'angle</span><b>Titres : Didot (logo) · Bodoni Moda (site)</b><p>Capitales ou phrases courtes, jamais en gras. L'italique pour les phrases signature. Dans PowerPoint : Georgia si Didot n'est pas installée.</p></div>
+        <div class="type"><span class="ex2">Parallèle</span><b>Texte : Avenir Next · Jost (site)</b><p>Pour le texte courant et les petites étiquettes en capitales espacées. Dans PowerPoint : Calibri en remplacement.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande sable" aria-labelledby="titre-motif">
+    <div class="in">
+      <div style="display:grid;gap:14px"><p class="surtitre">4 · Le motif et le ton</p><h2 class="h2" id="titre-motif">Les deux lignes, et une voix posée</h2></div>
+      <svg class="trajectoires" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true" style="max-width:640px">
+        <path d="M4,64 C300,98 560,8 996,26" stroke="#B8693D"/>
+        <path d="M4,86 C300,120 560,30 996,48" stroke="#B8693D" opacity=".5"/>
+      </svg>
+      <div class="regles">
+        <div class="regle"><h3>Le motif</h3><p>Les deux lignes du logo se réutilisent seules, en cuivre, pour séparer ou souligner un moment fort. Une seule fois par page ou par slide.</p></div>
+        <div class="regle"><h3>Le ton</h3><p>Vouvoiement, phrases courtes, des faits sourcés. On parle de sens et d'impact sans grands mots.</p></div>
+        <div class="regle"><h3>Les images</h3><p>Portraits en noir et blanc. Photos calmes, avec de l'espace et une ligne d'horizon.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="in">
+    <img src="logo-blanc.svg" alt="Impact Parallèle" width="150" height="64">
+    <p>Coaching Executive à impact positif · 5 coachs certifiés HEC Paris<br><a href="#charte">Charte graphique</a> · <a href="#accueil" data-ancre="devis">Demander un devis</a></p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // ----- Navigation : deux vues (#accueil par défaut, #charte) -----
+  const vues = { accueil: document.getElementById("vue-accueil"), charte: document.getElementById("vue-charte") };
+  function afficher() {
+    const h = (location.hash || "").slice(1);
+    const nom = h === "charte" ? "charte" : "accueil";
+    vues.accueil.hidden = nom !== "accueil";
+    vues.charte.hidden = nom !== "charte";
+    document.querySelectorAll("[data-lien]").forEach(a => a.toggleAttribute("aria-current", a.dataset.lien === nom));
+    if (nom === "charte") window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", afficher);
+  afficher();
+  // Liens vers une section de l'accueil
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-ancre]");
+    if (!a) return;
+    e.preventDefault();
+    if (location.hash !== "#accueil" && location.hash !== "") { location.hash = "accueil"; }
+    afficher();
+    requestAnimationFrame(() => document.getElementById(a.dataset.ancre)?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }));
+  });
+
+  // ----- Palette -----
+  const teintes = [
+    ["Vert canard", "#14363A", "Couleur principale : fonds forts, titres, logo"],
+    ["Cuivre", "#B8693D", "Accent sur fond clair : chiffres, boutons, lignes"],
+    ["Cuivre clair", "#D9935F", "Accent sur fond vert canard"],
+    ["Crème", "#F6F1EA", "Fond clair principal"],
+    ["Sable", "#E9DFD3", "Fonds secondaires, séparations"],
+    ["Encre", "#1E2B2D", "Texte courant"],
+  ];
+  const pal = document.getElementById("palette");
+  teintes.forEach(([nom, hex, usage]) => {
+    const el = document.createElement("div");
+    el.className = "teinte";
+    el.innerHTML = `<div class="echant" style="background:${hex}"></div><div><b></b><code>${hex}</code><span style="font-size:14px;color:var(--gris)"></span><button type="button">Copier ${hex}</button></div>`;
+    el.querySelector("b").textContent = nom;
+    el.querySelector("span").textContent = usage;
+    const b = el.querySelector("button");
+    b.addEventListener("click", () => copier(hex, b, "Copié"));
+    pal.appendChild(el);
+  });
+
+  function copier(texte, bouton, ok) {
+    const avant = bouton.textContent;
+    const fini = () => { bouton.textContent = ok; setTimeout(() => bouton.textContent = avant, 1600); };
+    try {
+      navigator.clipboard.writeText(texte).then(fini, () => selectionner(bouton));
+    } catch { selectionner(bouton); }
+  }
+  function selectionner(bouton) {
+    const cible = document.getElementById("recap");
+    if (cible && !cible.closest("[hidden]")) { const r = document.createRange(); r.selectNodeContents(cible); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    bouton.textContent = "Sélectionné : faites Copier";
+  }
+
+  // ----- Formulaire de devis -----
+  const form = document.getElementById("form-devis");
+  const erreur = document.getElementById("f-erreur");
+  const btn = document.getElementById("f-envoyer");
+  const merci = document.getElementById("merci");
+  let db = null, user = null, monId = null;
+
+  (async () => {
+    try {
+      db = window.claude ? await window.claude.use("db") : null;
+      user = window.claude ? await window.claude.use("user") : null;
+      monId = user ? await user.id() : null;
+      const proprietaire = user ? ((await user.isOwner()) ?? false) : false;
+      if (db && proprietaire) suivreDemandes();
+    } catch { db = null; }
+  })();
+
+  function lire() {
+    const f = new FormData(form);
+    return {
+      prenom: (f.get("prenom") || "").trim(), nom: (f.get("nom") || "").trim(),
+      entreprise: (f.get("entreprise") || "").trim(), fonction: (f.get("fonction") || "").trim(),
+      email: (f.get("email") || "").trim(), telephone: (f.get("telephone") || "").trim(),
+      format: f.get("format") || "", nombre: f.get("nombre") || "",
+      sujets: f.getAll("sujets"), message: (f.get("message") || "").trim(),
+    };
+  }
+  function resume(d) {
+    return [
+      `Demande de devis · Impact Parallèle`,
+      `${d.prenom} ${d.nom}${d.fonction ? ", " + d.fonction : ""} · ${d.entreprise}`,
+      `${d.email}${d.telephone ? " · " + d.telephone : ""}`,
+      `Format : ${d.format} · ${d.nombre}`,
+      d.sujets.length ? `Sujets : ${d.sujets.join(", ")}` : "",
+      d.message ? `\n${d.message}` : "",
+    ].filter(Boolean).join("\n");
+  }
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const d = lire();
+    const manque = [];
+    if (!d.prenom) manque.push("votre prénom");
+    if (!d.nom) manque.push("votre nom");
+    if (!d.entreprise) manque.push("votre entreprise");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) manque.push("un email valide");
+    if (manque.length) { erreur.textContent = "Il manque " + manque.join(", ") + "."; erreur.hidden = false; return; }
+    erreur.hidden = true;
+    btn.disabled = true; btn.textContent = "Envoi…";
+    let enregistre = false;
+    if (db && monId) {
+      try { await db.doc("devis/" + monId).set({ ...d, envoyeLe: new Date().toISOString() }); enregistre = true; } catch { enregistre = false; }
+    }
+    document.getElementById("recap").textContent = resume(d);
+    document.getElementById("merci-texte").textContent = enregistre
+      ? "Votre demande est bien arrivée. Un coach d'Impact Parallèle vous recontacte pour un premier échange."
+      : "Ce site est une version de présentation : le formulaire n'envoie pas encore les demandes. Copiez votre demande ci-dessous pour nous la transmettre.";
+    form.hidden = true; merci.hidden = false;
+    btn.disabled = false; btn.textContent = "Envoyer ma demande";
+  });
+  document.getElementById("copier-recap").addEventListener("click", e => copier(document.getElementById("recap").textContent, e.currentTarget, "Copiée"));
+  document.getElementById("nouvelle").addEventListener("click", () => { form.reset(); merci.hidden = true; form.hidden = false; document.getElementById("f-prenom").focus(); });
+
+  // ----- Demandes reçues (propriétaire) -----
+  function suivreDemandes() {
+    const bloc = document.getElementById("bloc-recues");
+    const liste = document.getElementById("recues");
+    bloc.hidden = false; bloc.style.display = "grid"; bloc.style.gap = "20px";
+    const minuteur = setTimeout(() => { liste.innerHTML = '<p style="color:var(--sable)">Les demandes ne sont pas joignables pour l\'instant.</p>'; }, 10000);
+    db.collection("devis").orderBy("envoyeLe", "desc").limit(100).onSnapshot(snap => {
+      if (!snap.metadata.fromCache) clearTimeout(minuteur);
+      liste.innerHTML = "";
+      if (snap.empty) { liste.innerHTML = '<p style="color:var(--sable)">Aucune demande pour l\'instant. Elles apparaîtront ici dès qu\'un visiteur enverra le formulaire.</p>'; return; }
+      snap.docs.forEach(doc => {
+        const d = doc.data() || {};
+        const el = document.createElement("div");
+        el.className = "recue";
+        el.innerHTML = "<b></b><span></span><span class='meta'></span>";
+        el.querySelector("b").textContent = `${d.prenom || ""} ${d.nom || ""} · ${d.entreprise || ""}`;
+        el.querySelector("span").textContent = `${d.format || ""} · ${d.nombre || ""}${(d.sujets || []).length ? " · " + d.sujets.join(", ") : ""}${d.message ? " — " + d.message : ""}`;
+        const date = d.envoyeLe ? new Date(d.envoyeLe).toLocaleString("fr-BE", { dateStyle: "medium", timeStyle: "short" }) : "";
+        el.querySelector(".meta").textContent = `${d.email || ""}${d.telephone ? " · " + d.telephone : ""} · ${date}`;
+        liste.appendChild(el);
+      });
+    }, () => { clearTimeout(minuteur); liste.innerHTML = '<p style="color:var(--sable)">Impossible de lire les demandes.</p>'; });
+  }
+})();
+</script>
+
+</body>
+</html>
